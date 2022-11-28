@@ -26,7 +26,18 @@ n == height.length
 2 <= n <= 105
 0 <= height[i] <= 104
 '''
+
 from typing import List
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        
+        ans = 0
+        l = 0
+        r = len(height)-1
+        while r>l:
+            if height[l] > height[r]:
+                ans = max(ans, height[r] * (r-l))
+                r=r-1
+            else:
+                ans = max(ans, height[l] * (r-l))
+                l=l+1
+        return ans
